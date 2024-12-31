@@ -1,0 +1,13 @@
+.area-button {
+    cursor: pointer;
+    width: 100%;
+    min-width: 300px;
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: 1px dashed gainsboro;
+    transition: background-color 300ms ease;
+
+    &:hover {
+        background-color: rgb(233, 248, 255);
+    }
+}
