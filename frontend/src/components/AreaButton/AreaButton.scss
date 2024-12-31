@@ -1,5 +1,6 @@
 .area-button {
     cursor: pointer;
+    box-sizing: border-box;
     width: 100%;
     min-width: 300px;
     padding: 15px 30px;
@@ -7,7 +8,17 @@
     border: 1px dashed gainsboro;
     transition: background-color 300ms ease;
 
-    &:hover {
+    &.inactive {
+        cursor: default;
+        border: none;
+        background-color: rgb(241, 241, 241);
+    }
+
+    & + .area-button {
+        margin-top: 10px;
+    }
+
+    &:hover:not(.inactive) {
         background-color: rgb(233, 248, 255);
     }
 }

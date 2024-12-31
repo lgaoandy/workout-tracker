@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { Result } from "antd"
-import AreaButton from "../components/AreaButton/AreaButton"
-import AddExercise from "../components/AddExercise/AddExercise"
+import AreaButton from "./AreaButton/AreaButton"
+import AddExercise from "./AddExercise/AddExercise"
 
-export default function Exercises() {
+export default function Exercises({ inactive = true, onSelect }) {
     const [exercises, setExercises] = useState([])
     const [addExercise, setAddExercise] = useState(false)
 
@@ -17,7 +17,7 @@ export default function Exercises() {
     }, [])
 
     return (
-        <main>
+        <div>
             {!exercises.length ? (
                 <div>
                     <Result
@@ -33,7 +33,6 @@ export default function Exercises() {
                         onCancel={() => setAddExercise(false)}
                         onFinish={(exercises) => {
                             setAddExercise(false)
-                            console.log(exercises)
                             setExercises(exercises)
                         }}
                     />
@@ -41,7 +40,13 @@ export default function Exercises() {
             ) : (
                 <div>
                     {exercises.map((exercise, i) => (
-                        <AreaButton key={i}>{exercise[0]}</AreaButton>
+                        <AreaButton
+                            inactive={inactive}
+                            key={i}
+                            onClick={() => onSelect(exercise)}
+                        >
+                            {exercise[0]}
+                        </AreaButton>
                     ))}
                     <AreaButton onClick={() => setAddExercise(true)}>
                         Add Exercise
@@ -56,6 +61,6 @@ export default function Exercises() {
                     />
                 </div>
             )}
-        </main>
+        </div>
     )
 }
