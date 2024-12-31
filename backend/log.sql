@@ -4,9 +4,7 @@ CREATE TABLE IF NOT EXISTS exercises (
     type TEXT,
     primary_muscle TEXT,
     equipment TEXT,
-    difficulty TEXT,
-    instructions TEXT,
-    date_created DATE
+    date_created DATE DEFAULT (CURRENT_DATE) NOT NULL
 );
 
 

@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, request
 from flask_cors import CORS
 from datetime import datetime
 
@@ -39,6 +39,20 @@ def startworkout():
     db.commit()
     workout_id = cursor.lastrowid
     return str(workout_id), 200
+
+
+@app.route("/exercises", methods=["GET", "POST"])
+def exercises():
+    db = get_db()
+    
+    if request.method == "POST":
+        data = request.get_json()
+        db.execute("INSERT INTO exercises (name, type, primary_muscle, equipment) VALUES (?, ?, ?, ?)", (data["name"], data["category"], data["muscle"], data["equipment"]))
+        db.commit()
+    exercises = db.execute("SELECT name, type, primary_muscle, equipment FROM exercises").fetchall()
+    print(exercises)
+    return exercises, 200
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

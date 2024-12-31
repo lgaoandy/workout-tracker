@@ -4,6 +4,8 @@ import { FaHome } from "react-icons/fa"
 import { FaDumbbell, FaPersonRunning } from "react-icons/fa6"
 import Home from "./pages/Home"
 import "./App.scss"
+import WorkoutHistory from "./pages/WorkoutHistory"
+import Exercises from "./pages/Exercises"
 
 function App() {
     const [current, setCurrent] = useState("home")
@@ -63,6 +65,10 @@ function App() {
         switch (current) {
             case "home":
                 return <Home />
+            case "workouts":
+                return <WorkoutHistory />
+            case "exercises":
+                return <Exercises />
             default:
                 return "error"
         }
