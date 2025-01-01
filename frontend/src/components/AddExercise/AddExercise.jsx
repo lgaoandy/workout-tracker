@@ -98,6 +98,7 @@ export default function AddExercise({ open, onCancel, onFinish }) {
         })
             .then((response) => response.json())
             .then((exercises) => {
+                form.resetFields()
                 onFinish(exercises)
             })
     }

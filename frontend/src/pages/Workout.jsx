@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Button, Divider, Flex, Modal } from "antd"
 import AreaButton from "../components/AreaButton/AreaButton"
 import Exercises from "../components/Exercises"
+import ActiveExercise from "../components/ActiveExercise/ActiveExercise"
 
 export default function Workout() {
     const [open, setOpen] = useState(false)
@@ -12,7 +13,7 @@ export default function Workout() {
             <AreaButton onClick={() => setOpen(true)}>Add Exercise</AreaButton>
             <Divider />
             {exercises.map((exercise) => (
-                <div>{exercise[0]}</div>
+                <ActiveExercise exercise={exercise} />
             ))}
             <Modal
                 maskClosable={false}
